@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    public AudioSource musicSource;  // منبع موزیک
+    public AudioSource musicSource;  
     
     void Start()
     {
         if (musicSource != null)
         {
-            musicSource.loop = true;  // تکرار کن
-            musicSource.Play();        // پخش کن
+            musicSource.loop = true;  
+            musicSource.Play();       
         }
     }
     
@@ -24,4 +24,5 @@ public class BackgroundMusic : MonoBehaviour
         if (musicSource != null)
             musicSource.volume = volume;
     }
+
 }
