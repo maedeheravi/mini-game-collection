@@ -3,7 +3,7 @@ using UnityEngine;
 public class GreenWallWin : MonoBehaviour
 {
     private ScoreManager scoreManager;
-    public AudioSource collectSound; // <--- این خط رو برای صدا اضافه کن
+    public AudioSource collectSound; 
 
     void Start()
     {
@@ -17,12 +17,13 @@ public class GreenWallWin : MonoBehaviour
             if (scoreManager != null)
             {
                 scoreManager.AddScore(10);
-                if (collectSound != null) // <--- اگه صدا وجود داشت
+                if (collectSound != null) 
                 {
-                    collectSound.Play(); // <--- پخشش کن
+                    collectSound.Play(); 
                 }
                 Debug.Log("به دیوار سبز خورد! +۱۰ امتیاز");
             }
         }
     }
+
 }
