@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DropSpawner : MonoBehaviour
 {
-    public GameObject[] dropPrefabs;  // انواع قطره‌ها
-    public float spawnRate = 1f;      // هر چند ثانیه یکی
-    public float spawnRangeX = 6f;     // محدوده افقی
-    public float spawnHeight = 5f;     // ارتفاع تولید
+    public GameObject[] dropPrefabs;  
+    public float spawnRate = 1f;      
+    public float spawnRangeX = 6f;     
+    public float spawnHeight = 5f;     
     
     private float timer = 0f;
     
@@ -24,23 +24,24 @@ public class DropSpawner : MonoBehaviour
     
     void SpawnDrop()
     {
-        // اگه قطره‌ای تعریف نشده
+        
         if (dropPrefabs.Length == 0)
         {
             Debug.LogError("هیچ قطره‌ای به Spawner وصل نشده!");
             return;
         }
         
-        // انتخاب تصادفی بین قطره‌ها (آبی یا قرمز)
+        
         int randomIndex = UnityEngine.Random.Range(0, dropPrefabs.Length);
         
-        // موقعیت تصادفی
+        
         float randomX = UnityEngine.Random.Range(-spawnRangeX, spawnRangeX);
         Vector3 spawnPos = new Vector3(randomX, spawnHeight, 0);
         
-        // ساختن قطره
+        
         Instantiate(dropPrefabs[randomIndex], spawnPos, Quaternion.identity);
         
         Debug.Log("قطره ساخته شد: " + randomIndex);
     }
 }
+
