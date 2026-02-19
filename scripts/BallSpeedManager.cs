@@ -15,22 +15,22 @@ public class BallSpeedManager : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         
-        // سرعت اولیه
+       
         Vector2 randomDir = new Vector2(Random.Range(-1f, 1f), Random.Range(0.5f, 1f)).normalized;
         rb.velocity = randomDir * startingSpeed;
     }
     
     void Update()
     {
-        // اگه سرعت کم شد، زیادش کن
+        
         if (rb.velocity.magnitude < minSpeed)
         {
-            // حفظ جهت ولی افزایش سرعت
+            
             rb.velocity = rb.velocity.normalized * minSpeed;
             Debug.Log("سرعت کم بود، زیادش کردم");
         }
         
-        // اگه سرعت زیاد شد، کمش کن (اختیاری)
+        
         if (rb.velocity.magnitude > maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -39,13 +39,14 @@ public class BallSpeedManager : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // یه کم تنوع به برخوردها بده
+        
         if (collision.gameObject.name == "Paddle")
         {
-            // یه نیروی کوچیک اضافه کن
+            
             float randomBoost = Random.Range(0.1f, 0.3f);
             rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude + randomBoost);
         }
     }
 }
+
 
