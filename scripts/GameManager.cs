@@ -7,20 +7,18 @@ public class GameManager : MonoBehaviour
     public Transform spawnPointGround;
     public Transform spawnPointAir; 
     public AudioClip hitClip;
-    public static GameManager instance; // Singleton
-    public AudioClip gameOverSound;  // صدای Game Over
-    private AudioSource audioSource;  // AudioSource
-
-    public float gameSpeed = 5f; // سرعت اولیه
-    public Text scoreText; // UI Text برای امتیاز
-    public GameObject gameOverPanel; // پنل Game Over (بعداً می‌سازیم)
+    public static GameManager instance; 
+    public AudioClip gameOverSound;  
+    private AudioSource audioSource;  
+    public float gameSpeed = 5f; 
+    public Text scoreText; 
+    public GameObject gameOverPanel; 
 
     private float score = 0f;
 
     public Text highScoreText;
-    public GameObject[] obstaclePrefabs; // آرایه prefabها (کاکتوس، پرنده)
-    private float nextSpawnTime = 0f;  // اضافه کن بالای کلاس
-
+    public GameObject[] obstaclePrefabs; 
+    private float nextSpawnTime = 0f; 
     void Awake()
     {
         instance = this;
@@ -30,21 +28,20 @@ public class GameManager : MonoBehaviour
   
 void Update()
 {
-    // افزایش سرعت
+    
     gameSpeed += Time.deltaTime * 0.01f;
 
-    // امتیاز
+    
     score += Time.deltaTime * gameSpeed * 0.1f;
     if (scoreText != null)
         scoreText.text = ((int)score).ToString("00000");
 
-    // اسپاون یکی یکی با Timer (جایگزین Random قدیمی)
     if (Time.time > nextSpawnTime)
     {
         SpawnObstacle();
         nextSpawnTime = Time.time + Random.Range(1.8f, 3.2f);  // فاصله ۱.۸–۳.۲ ثانیه (تست کن)
     }
-    // Hi-Score (اضافه کن)
+   
 int highScore = PlayerPrefs.GetInt("HighScore", 0);
 if ((int)score > highScore)
 {
@@ -57,7 +54,7 @@ if (highScoreText != null)
 }
     void SpawnObstacle()
 {
-    if (obstaclePrefabs.Length == 0) return;  // فیکس: اگر خالی، اسپاون نکن
+    if (obstaclePrefabs.Length == 0) return;  
 
     int randomIndex = Random.Range(0, obstaclePrefabs.Length);
     
@@ -93,7 +90,7 @@ if (highScoreText != null)
         Debug.Log("🎵 صدای Game Over پخش شد");
     }
 
-    Time.timeScale = 0f;  // بازی رو متوقف کن
+    Time.timeScale = 0f;  
     
     if (gameOverPanel != null)
     {
@@ -116,4 +113,5 @@ if (highScoreText != null)
 {
     SceneManager.LoadScene("MainMenu");
 }
+
 }
